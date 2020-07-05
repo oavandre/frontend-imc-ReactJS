@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
+const port_api        = process.env.NODEJS_PORT_API || 5000;
+const url_api        = process.env.NODEJS_APP_URI || 'http://localhost';
+
+
 const Imc = props => (
   <tr>
     <td>{props.imc.genero}</td>
@@ -24,7 +29,7 @@ export default class ImcList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/imc/')
+    axios.get(url_api+':'+port_api+'/imc/')
       .then(response => {
         this.setState({ imc: response.data })
       })
@@ -34,7 +39,7 @@ export default class ImcList extends Component {
   }
 
   deleteExercise(id) {
-    axios.delete('http://localhost:5000/imc/'+id)
+    axios.delete(url_api+':'+port_api+'/imc/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({

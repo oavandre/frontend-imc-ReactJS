@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import "react-datepicker/dist/react-datepicker.css";
 
+const port_api        = process.env.NODEJS_PORT_API || 5000;
+const url_api        = process.env.NODEJS_APP_URI || 'http://localhost';
+
 export default class EditImc extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +26,7 @@ export default class EditImc extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/imc/'+this.props.match.params.id)
+    axios.get(url_api+':'+port_api+'/imc/'+this.props.match.params.id)
       .then(response => {
         this.setState({
             genero: response.data.genero,
@@ -36,7 +39,7 @@ export default class EditImc extends Component {
         console.log(error);
       })
 
-    axios.get('http://localhost:5000/genero/')
+    axios.get(url_api+':'+port_api+'/genero/')
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -86,7 +89,7 @@ export default class EditImc extends Component {
 
     console.log(imc);
 
-    axios.post('http://localhost:5000/imc/update/' + this.props.match.params.id, imc)
+    axios.post(url_api+':'+port_api+'/imc/update/' + this.props.match.params.id, imc)
       .then(res => console.log(res.data));
 
     window.location = '/';
