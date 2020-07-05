@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-const port_api        = process.env.NODEJS_PORT_API || 5000;
-const url_api        = process.env.NODEJS_APP_URI || 'http://localhost';
+
 
 
 const Imc = props => (
@@ -29,7 +28,7 @@ export default class ImcList extends Component {
   }
 
   componentDidMount() {
-    axios.get(url_api+':'+port_api+'/imc/')
+    axios.get(REACT_APP_API_URI+'/imc/')
       .then(response => {
         this.setState({ imc: response.data })
       })
@@ -39,7 +38,7 @@ export default class ImcList extends Component {
   }
 
   deleteExercise(id) {
-    axios.delete(url_api+':'+port_api+'/imc/'+id)
+    axios.delete(REACT_APP_API_URI+'/imc/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({
