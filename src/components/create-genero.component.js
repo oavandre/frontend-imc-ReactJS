@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 
-const port_api        = process.env.NODEJS_PORT_API || 5000;
-const url_api        = process.env.NODEJS_APP_URI || 'http://localhost';
-
 
 export default class CreateGenero extends Component {
   constructor(props) {
@@ -33,7 +30,7 @@ export default class CreateGenero extends Component {
 
     console.log(genero);
 
-    axios.post(url_api+':'+port_api+'/genero/add', genero)
+    axios.post('https://backend-imc-nodejs-mongodb-api.herokuapp.com/genero/add', genero)
       .then(res => console.log(res.data));
 
     this.setState({

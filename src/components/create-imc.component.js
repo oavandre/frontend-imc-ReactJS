@@ -3,9 +3,6 @@ import axios from 'axios';
 //import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
-const port_api        = process.env.NODEJS_PORT_API || 5000;
-const url_api        = process.env.NODEJS_APP_URI || 'http://localhost';
-
 export default class CreateIMC extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +23,7 @@ export default class CreateIMC extends Component {
   }
 
   componentDidMount() {
-    axios.get(url_api+':'+port_api+'/genero/')
+    axios.get(process.env.REACT_APP_API_URI+'/genero/')
       .then(response => {
         if (response.data.length > 0) {
           this.setState({
@@ -77,7 +74,7 @@ export default class CreateIMC extends Component {
 
     console.log(imc);
 
-    axios.post(url_api+':'+port_api+'/imc/add', imc)
+    axios.post(process.env.REACT_APP_API_URI+'/imc/add', imc)
       .then(res => console.log(res.data));
 
     window.location = '/';
