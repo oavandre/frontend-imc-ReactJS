@@ -28,7 +28,7 @@ export default class ImcList extends Component {
   }
 
   componentDidMount() {
-    axios.get(REACT_APP_API_URI+'/imc/')
+    axios.get(process.env.REACT_APP_API_URI+'/imc/')
       .then(response => {
         this.setState({ imc: response.data })
       })
@@ -38,7 +38,7 @@ export default class ImcList extends Component {
   }
 
   deleteExercise(id) {
-    axios.delete(REACT_APP_API_URI+'/imc/'+id)
+    axios.delete(process.env.REACT_APP_API_URI+'/imc/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({
